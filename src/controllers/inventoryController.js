@@ -10,18 +10,18 @@ exports.createInventory = async ( req, res ) => {
             reorderLevel = 0
         } = req.body;
 
-        const product = await Products.find({productId});
-        if ( product) {
-            return res.status(404).json({message: "product already exists"});
+        const productExists = await Products.findById(productId);
+        if ( !productExists) {
+            return res.status(404).json({message: "product not found in database"});
         }
 
-        // const exists = await Inventory.findOne({ product: productId});
-        // if (exists) {
-        //     return res.status(409).json({message: "inventory already exists"});
-        // }
+        const inventoryExists = await Inventory.findOne({ product: productId});
+        if (inventoryExists) {
+            return res.status(409).json({message: "inventory already exists"});
+        }
 
         const inventory = await Inventory.create({
-            productId,
+            product: productId,
             stock,
             reorderLevel,
         });
@@ -75,7 +75,7 @@ exports.reserveStock = async( req, res ) => {
         res.status(200).json({message: 'Inventory reserved stock'});
     } catch (error) {
         res.status(400).json({message: error });
-    };
+    }
 };
 
 exports.confirmSale = async ( req, res ) => {
@@ -114,7 +114,17 @@ exports.releaseReservation = async ( req, res ) => {
             { $inc: { reserved: -quantity}},
             {new : true}
         );
-        res.status(400).json({ inventory});
+        res.status(200).json({ inventory});
+    } catch (error) {
+        res.status(400).json({ message: error });
+    }
+}
+
+exports.getInventory = async ( req, res ) => {
+    try {
+        const inventory = await Inventory.find({});
+        if ( !inventory ) return res.status(404).json({message: 'Inventory not found'});
+        res.status(200).json(inventory);
     } catch (error) {
         res.status(400).json({ message: error });
     }
