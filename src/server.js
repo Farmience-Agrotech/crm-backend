@@ -18,8 +18,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 // const db = require('./config/keys').MongoURI;
 
 // Db Connection from .env file
-const db = "mongodb://localhost:27017"
-// const db = "mongodb+srv://adithyamn_db_user:mG5bagOZVei3skGF@farmience-crm.1bula4s.mongodb.net/?appName=farmience-crm"
+// const db = "mongodb://localhost:27017"
+const db = "mongodb+srv://adithyamn_db_user:mG5bagOZVei3skGF@farmience-crm.1bula4s.mongodb.net/?appName=farmience-crm"
 // Connect to MongoDB
     mongoose
       .connect(
