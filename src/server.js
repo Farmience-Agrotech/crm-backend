@@ -5,6 +5,8 @@ const passport = require('passport');
 const session = require('express-session');
 const path = require('path');
 
+const cors = require('cors');
+
 const { inventoryRouter } = require("./routes/inventoryRoute.js");
 const app = express();
 
@@ -35,7 +37,7 @@ app.set('view engine', 'ejs');
 // Express body parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+app.use(cors());
 // Express session
 app.use(
   session({
