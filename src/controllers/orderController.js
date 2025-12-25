@@ -13,7 +13,7 @@ exports.createOrder = async (req, res) => {
         for (const item of products) {
             const inventory = await Inventory.findOne({ product: item.productId });
 
-            if (!inventory || inventory.available < item.quantity) {
+            if (inventory.available < item.quantity) {
                 return res.status(400).json({
                     error: `Insufficient stock for product: ${item.productId}. Available: ${inventory ? inventory.available : 0}`
                 });
