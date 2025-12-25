@@ -13,10 +13,17 @@ exports.createOrder = async (req, res) => {
         for (const item of products) {
             const inventory = await Inventory.findOne({ product: item.productId });
 
-            if (inventory.available < item.quantity) {
+            if (!inventory) {
                 return res.status(400).json({
-                    error: `Insufficient stock for product: ${item.productId}. Available: ${inventory ? inventory.available : 0}`
+                    error: `Product ${ item.productId } is not available in inventory.`
                 });
+            }
+
+            const availableStock = inventory.stock - inventory.reserved;
+            if ( availableStock <= item.quantity ) {
+                return res.status(400).json({
+                    error: `Insufficient stock for product ${ item.productId }.`
+                })
             }
         }
 
@@ -33,7 +40,7 @@ exports.createOrder = async (req, res) => {
             orderId,
             products,
             totalAmount,
-            status: status || 'pending'
+            status: status || 'PENDING'
         });
 
         res.status(201).json(newOrder);
