@@ -7,4 +7,4 @@ router.post("/register", registerUser);
 router.post("/login", loginUser)
 router.get("/list", protect, authorize("ADMIN"), listUsers);
 
-module.exports =router;
+module.exports = router;
