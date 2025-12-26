@@ -53,7 +53,11 @@ app.use(passport.session());
 app.use("/products", require("./products/route/index.js"));
 app.use("/inventory", require("./inventory/route/inventoryRoute.js"));
 app.use("/orders", require("./orders/route/orderRoute.js"));
+
+// Users
 app.use("/users", require("./users/route/userRoute.js"));
+app.use("/users", require("./customer/route/index.js"));
+
 app.use("/products", require("./templates/route/templateRoute.js"));
 
 
