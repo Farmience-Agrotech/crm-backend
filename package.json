@@ -1,13 +1,10 @@
 {
-  "name": "create-mern-app",
+  "name": "orderlyhub_backend",
   "version": "1.0.0",
-  "description": "A CLI tool to generate mern stack starter code in a jiffy",
-  "bin": {
-    "create-mern-app": "./index.js"
-  },
+  "description": "An express app for orderly hub CRM",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon src/server.js"
   },
   "author": {
     "name": "Cameron Thompson and Meer Hamza"

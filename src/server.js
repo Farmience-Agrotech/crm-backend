@@ -13,16 +13,13 @@ const app = express();
 //Set Up the Assets Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Passport Config
-// require('./config/passport')(passport);
+// DEV ENV
+const db = "mongodb://localhost:27017"
 
-// DB Config
-// const db = require('./config/keys').MongoURI;
+// PRODUCTION ENV
+// const db = "mongodb+srv://adithyamn_db_user:mG5bagOZVei3skGF@farmience-crm.1bula4s.mongodb.net/?appName=farmience-crm"
 
-// Db Connection from .env file
-// const db = "mongodb://localhost:27017"
-const db = "mongodb+srv://adithyamn_db_user:mG5bagOZVei3skGF@farmience-crm.1bula4s.mongodb.net/?appName=farmience-crm"
-// Connect to MongoDB
+
     mongoose
       .connect(
         db
