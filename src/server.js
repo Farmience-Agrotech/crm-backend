@@ -50,7 +50,7 @@ app.use(passport.session());
 
 // Routes
 // app.use('/', require('./api/api.js'));
-app.use("/products", require("./products/route/productRoute.js"));
+app.use("/products", require("./products/route/index.js"));
 app.use("/inventory", require("./inventory/route/inventoryRoute.js"));
 app.use("/orders", require("./orders/route/orderRoute.js"));
 app.use("/users", require("./users/route/userRoute.js"));

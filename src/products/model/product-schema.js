@@ -1,20 +1,5 @@
 const mongoose = require('mongoose');
-const { Templates } = require("../../templates/model/templates.js");
-
-const customFieldsSchema = new mongoose.Schema({
-    fieldName : {
-        type: String,
-    },
-
-    fieldType: {
-        type: String,
-    },
-
-    value: {
-        type: String,
-    }
-
-});
+const { customFieldsSchema } = require('./custom-fields-schema.js');
 
 
 const productSchema = new mongoose.Schema({

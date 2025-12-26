@@ -1,4 +1,4 @@
-const { createProduct, listProducts, deleteProduct } = require('../controller/productController');
+const { createProduct, listProducts, deleteProduct } = require('../controller/index.js');
 const express = require("express");
 
 
