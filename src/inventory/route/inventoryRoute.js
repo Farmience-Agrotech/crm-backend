@@ -1,5 +1,5 @@
 const express = require("express");
-const { updateStock, createInventory, getInventory } = require("../controllers/inventoryController");
+const { updateStock, createInventory, getInventory } = require("../controller/inventoryController");
 const router = express.Router();
 
 router.post('/create', createInventory);

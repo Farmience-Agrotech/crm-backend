@@ -1,5 +1,5 @@
-const {Inventory} = require("../models/inventory.js");
-const {Products} = require("../models/products.js");
+const {Inventory} = require("../model/inventory.js");
+const {Products} = require("../../products/model/products.js");
 
 
 exports.createInventory = async ( req, res ) => {

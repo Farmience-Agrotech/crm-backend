@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { Templates } = require("./templates.js");
+const { Templates } = require("../../templates/model/templates.js");
 
 const customFieldsSchema = new mongoose.Schema({
     fieldName : {

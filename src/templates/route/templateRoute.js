@@ -2,7 +2,7 @@ const {
     createTemplate,
     getTemplate,
     deleteTemplate
-} = require("../controllers/TemplateController");
+} = require("../controller/templateController");
 
 const express = require("express");
 

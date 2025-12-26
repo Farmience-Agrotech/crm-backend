@@ -1,5 +1,5 @@
-const { Products } = require("../models/products.js");
-const { Templates } = require("../models/templates.js");
+const { Products } = require("../model/products.js");
+const { Templates } = require("../../templates/model/templates.js");
 
 exports.createProduct = async ( req, res) => {
     try {

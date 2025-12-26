@@ -7,7 +7,7 @@ const path = require('path');
 
 const cors = require('cors');
 
-const { inventoryRouter } = require("./routes/inventoryRoute.js");
+const { inventoryRouter } = require("./inventory/route/inventoryRoute.js");
 const app = express();
 
 //Set Up the Assets Folder
@@ -50,11 +50,11 @@ app.use(passport.session());
 
 // Routes
 // app.use('/', require('./api/api.js'));
-app.use("/products", require("./routes/productRoute.js"));
-app.use("/inventory", require("./routes/inventoryRoute.js"));
-app.use("/orders", require("./routes/orderRoute.js"));
-app.use("/users", require("./routes/userRoute.js"));
-app.use("/products", require("./routes/templateRoute.js"));
+app.use("/products", require("./products/route/productRoute.js"));
+app.use("/inventory", require("./inventory/route/inventoryRoute.js"));
+app.use("/orders", require("./orders/route/orderRoute.js"));
+app.use("/users", require("./users/route/userRoute.js"));
+app.use("/products", require("./templates/route/templateRoute.js"));
 
 
 const PORT = process.env.PORT || 8000;

@@ -1,4 +1,4 @@
-const { Templates } = require('../models/templates.js');
+const { Templates } = require('../model/templates.js');
 
 
 exports.getTemplate = async (req, res) => {
