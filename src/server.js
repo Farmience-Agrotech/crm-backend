@@ -54,6 +54,7 @@ app.use("/products", require("./routes/productRoute.js"));
 app.use("/inventory", require("./routes/inventoryRoute.js"));
 app.use("/orders", require("./routes/orderRoute.js"));
 app.use("/users", require("./routes/userRoute.js"));
+app.use("/products", require("./routes/templateRoute.js"));
 
 
 const PORT = process.env.PORT || 8000;
