@@ -1,4 +1,22 @@
 const mongoose = require('mongoose');
+const { Templates } = require("./templates.js");
+
+const customFieldsSchema = new mongoose.Schema({
+    fieldName : {
+        type: String,
+    },
+
+    fieldType: {
+        type: String,
+    },
+
+    value: {
+        type: String,
+    }
+
+});
+
+
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -16,21 +34,63 @@ const productSchema = new mongoose.Schema({
         index: true
     },
 
-    price: {
+    unit: {
+        type: String,
+        required: true,
+    },
+
+    categories : {
+        type: Array,
+        required: true,
+    },
+
+    minPrice: {
         type: Number,
         required: true,
         min: 0
     },
 
-    currency: {
-        type: String,
-        default: "INR"
+    maxPrice: {
+        type: Number,
+        required: true,
+        min: 0
     },
 
-    isActive: {
-        type: Boolean,
-        default: true,
+    taxRate: {
+        type: Number,
+        required: true,
+        min: 0
+    },
+
+    inventoryLocation  : {
+        type: String,
+        required: true,
+    },
+
+    stockQuantity : {
+        type: Number,
+        required: true,
+    },
+
+    minStockLevel : {
+        type: Number,
+        required: true,
+    },
+
+    minOrderLevel : {
+        type: Number,
+        required: true,
+    },
+
+    additionalFields : {
+        type: [customFieldsSchema]
+    },
+
+    templateId : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Template',
     }
+
 }, {
     timestamps: true
     });

@@ -1,12 +1,24 @@
 const { Products } = require("../models/products.js");
+const { Templates } = require("../models/templates.js");
 
 exports.createProduct = async ( req, res) => {
     try {
         const {
             name,
             description,
-            price,
             sku,
+            unit,
+            categories,
+            minPrice,
+            maxPrice,
+            taxRate,
+            inventoryLocation,
+            stockQuantity,
+            minStockLevel,
+            minOrderLevel,
+            additionalFields,
+            templateId,
+            templateValues
         } = req.body;
 
         const productExists = await Products.findOne({name});
@@ -14,11 +26,40 @@ exports.createProduct = async ( req, res) => {
             return res.status(400).json({message: "Product already exists."});
         }
 
+        const template = await Templates.findOne({ _id: templateId});
+
+        if ( !template ) {
+            return res.status(400).json({message: "Template not found"});
+        }
+
+        const fieldsFromTemplate = template.templateFields.map(
+            field => {
+                return {
+                    fieldName: field.fieldName,
+                    fieldType: field.fieldType,
+                    value: templateValues[field.fieldName] || "",
+                }
+            }
+        );
+
+        const finalAdditionalFields = [
+            ...fieldsFromTemplate,
+            ...(additionalFields || [])
+        ]
         const product = await Products.create({
             name,
             description,
-            price,
-            sku
+            sku,
+            unit,
+            categories,
+            minPrice,
+            maxPrice,
+            taxRate,
+            inventoryLocation,
+            stockQuantity,
+            minStockLevel,
+            minOrderLevel,
+            additionalFields: finalAdditionalFields
         });
 
         res.status(201).json(product);
