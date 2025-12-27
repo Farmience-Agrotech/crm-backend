@@ -11,6 +11,10 @@ const addressSchema = new mongoose.Schema({
     },
     pinCode: {
         type: String,
+    },
+    isDefault: {
+        type: Boolean,
+        default: false,
     }
 });
 
@@ -40,7 +44,7 @@ const companyDetailsSchema = new mongoose.Schema({
         type: addressSchema
     },
     shippingAddress: {
-        type: addressSchema
+        type: [addressSchema]
     },
     contactDetails:{
         type: companyContactDetailsSchema

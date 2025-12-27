@@ -24,6 +24,13 @@ const customerSchema = new mongoose.Schema({
 
     bankDetails: {
         type: bankDetails.schema,
+    },
+    blocked: {
+        type: Boolean,
+        default: false,
+    },
+    creditLimit : {
+        type: Number,
     }
 });
 
