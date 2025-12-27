@@ -5,7 +5,7 @@ exports.createProduct = async ( req, res) => {
     try {
         const {
             name, description, sku, unit, categories, minPrice, maxPrice, taxRate, inventoryLocation, stockQuantity,
-            minStockLevel, minOrderLevel, additionalFields, templateId, templateValues
+            minStockLevel, minOrderLevel, additionalFields, templateId, templateValues, hsnCode
         } = req.body;
 
         const productExists = await Products.findOne({name});
@@ -44,7 +44,7 @@ exports.createProduct = async ( req, res) => {
 
         const product = await Products.create({
             name, description, sku, unit, categories, minPrice, maxPrice, taxRate, inventoryLocation,
-            stockQuantity, minStockLevel, minOrderLevel, additionalFields: finalAdditionalFields, templateId: templateId || null
+            stockQuantity, minStockLevel, minOrderLevel, additionalFields: finalAdditionalFields, templateId: templateId || null, hsnCode
         });
 
         res.status(201).json(product);
