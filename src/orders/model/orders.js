@@ -57,6 +57,15 @@ const orderSchema = new mongoose.Schema({
     },
     shippingAddress: {
         type: addressSchema
+    },
+    shippingCost : {
+        type: Number,
+    },
+    notes: {
+        type: String
+    },
+    discount: {
+        type: Number
     }
 }, {
     timestamps: true

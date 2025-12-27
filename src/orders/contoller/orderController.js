@@ -6,7 +6,7 @@ const { nanoid } = require("nanoid");
 
 exports.createOrder = async (req, res) => {
     try {
-        const { customerId, products, address } = req.body;
+        const { customerId, products, address, shippingCost, notes, discount } = req.body;
 
 
         const generatedOrderId = `ORD-${nanoid(8).toUpperCase()}`;
@@ -51,7 +51,10 @@ exports.createOrder = async (req, res) => {
             products,
             totalAmount,
             address,
-            status: "PENDING"
+            status: "PENDING",
+            shippingCost,
+            notes,
+            discount,
         });
 
         res.status(201).json(newOrder);
