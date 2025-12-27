@@ -89,6 +89,13 @@ exports.updateOrder = async ( req, res ) => {
             return res.status(404).json({error: `No order with id ${ orderId }.`});
         }
 
+        const updateOrder = await Orders.findOneAndUpdate(
+            { orderId: orderId },
+            { $set: values },
+            { new: true, runValidators: true }
+        );
+
+        res.status(200).json(updateOrder);
 
     } catch ( error ) {
         res.status(500).json({error: error.message});
