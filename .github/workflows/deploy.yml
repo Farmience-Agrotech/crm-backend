@@ -2,6 +2,11 @@ name: deploy.yml
 on:
   push:
     branches: [ "main" ]
+    paths-ignore:
+      - 'README.md'
+      - 'insomnia/**'
+      - '.gitignore'
+      - 'LICENSE'
 
 
 jobs:
