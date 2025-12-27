@@ -8,7 +8,8 @@ exports.createCustomer = async (req, res) => {
             phoneNumber,
             designation,
             companyInfo,
-            bankDetails
+            bankDetails,
+            creditLimit
         } = req.body;
 
         if ( !fullName || !email || !phoneNumber || !designation || !companyInfo ) {
@@ -23,7 +24,8 @@ exports.createCustomer = async (req, res) => {
             phoneNumber,
             designation,
             companyInfo,
-            bankDetails
+            bankDetails,
+            creditLimit
         });
 
         res.status(200).send(newCustomer);
