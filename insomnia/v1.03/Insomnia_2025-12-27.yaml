@@ -1,0 +1,877 @@
+type: collection.insomnia.rest/5.0
+schema_version: "5.1"
+name: ERP API - Farmience
+meta:
+  id: wrk_c4261288b6bd47a6857ddc153d7d7d3e
+  created: 1766197302072
+  modified: 1766741910581
+  description: ""
+collection:
+  - name: Products
+    meta:
+      id: fld_65be7b8aee4f409d81f177b0081af4e4
+      created: 1766714696852
+      modified: 1766718593124
+      sortKey: -1766714696852
+      description: ""
+    children:
+      - url: localhost:8000/products/list
+        name: Products list
+        meta:
+          id: req_db354086db7f4b1fa19a7c2664ebc32a
+          created: 1766714709289
+          modified: 1766715049164
+          isPrivate: false
+          description: ""
+          sortKey: -1766714709289
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8000/products/delete/6947f1f2149781e9a3278082
+        name: Delete product :id
+        meta:
+          id: req_105cbc75cbc347588acbdb237fcf1082
+          created: 1766714846899
+          modified: 1766724587187
+          isPrivate: false
+          description: ""
+          sortKey: -1766714846899
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8000/products/create
+        name: create
+        meta:
+          id: req_03cf8cc1e65a481492c9103736b71699
+          created: 1766720296445
+          modified: 1766723841847
+          isPrivate: false
+          description: ""
+          sortKey: -1766714846999
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Industrial Drill Pro",
+              "description": "Heavy-duty cordless drill for professional use.",
+              "sku": "DRL-2025-X1",
+              "unit": "pcs",
+              "categories": ["Tools", "Power Tools", "Construction"],
+              "minPrice": 150.00,
+              "maxPrice": 199.99,
+              "taxRate": 12,
+              "inventoryLocation": "Warehouse A-12",
+              "stockQuantity": 50,
+              "minStockLevel": 5,
+              "minOrderLevel": 10,
+              "templateId": "694e10efe05c043460010093", 
+              "templateValues": {
+                "Voltage": "20V",
+                "Battery Type": "Lithium-Ion",
+                "Warranty Period": "2 Years"
+              },
+              "additionalFields": [
+                {
+                  "fieldName": "Promo Code",
+                  "fieldType": "text",
+                  "value": "WINTER25"
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Templates
+    meta:
+      id: fld_24d30930a9e24b018552bb2d88d872ee
+      created: 1766717697240
+      modified: 1766717697240
+      sortKey: -1766717697240
+      description: ""
+    children:
+      - url: localhost:8000/products/templates/create
+        name: create Template
+        meta:
+          id: req_2a869c4fba0045d8bf174453c50c6483
+          created: 1766717701558
+          modified: 1766723821149
+          isPrivate: false
+          description: ""
+          sortKey: -1766717701558
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {
+              "name": "Power Tools Template",
+              "description": "Standard fields for all electrical and battery-powered tools",
+              "templateFields": [
+                {
+                  "fieldName": "Voltage",
+                  "fieldType": "text",
+                  "isRequired": true
+                },
+                {
+                  "fieldName": "Battery Type",
+                  "fieldType": "selection",
+                  "isRequired": true
+                },
+                {
+                  "fieldName": "Warranty Period",
+                  "fieldType": "text",
+                  "isRequired": false
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8000/products/templates/list
+        name: list template
+        meta:
+          id: req_68d465b37aaa415f9cbe7b644951fa9b
+          created: 1766717956336
+          modified: 1766717983722
+          isPrivate: false
+          description: ""
+          sortKey: -1766717956336
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8000/products/templates/delete/694df9e0a4c81f4fd0553a98
+        name: delete template
+        meta:
+          id: req_bf450323959d4d6faf4785e2ffffebb5
+          created: 1766718334690
+          modified: 1766718419438
+          isPrivate: false
+          description: ""
+          sortKey: -1766718334690
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Orders
+    meta:
+      id: fld_c996fdafe6f84400978a1cd3b182087f
+      created: 1766720293499
+      modified: 1766720293499
+      sortKey: -1766720293499
+      description: ""
+    children:
+      - url: localhost:8000/orders/list
+        name: list order
+        meta:
+          id: req_e07cd5b5fbd149c0ad61b03d7409c99b
+          created: 1766720441458
+          modified: 1766833127599
+          isPrivate: false
+          description: ""
+          sortKey: -1766720441458
+        method: GET
+        body:
+          mimeType: application/json
+          text: ""
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8000/orders/create
+        name: create Order
+        meta:
+          id: req_c3c605bf8ef3424fbf43d84d1ab248a5
+          created: 1766811599407
+          modified: 1766812957145
+          isPrivate: false
+          description: ""
+          sortKey: -1766811599407
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "customerId": "694e36f65f2bafcca82d2a34",
+              "products": [
+                {
+                  "productId": "6947f200149781e9a3278085",
+                  "quantity": 5,
+                  "price": 499.50
+                },
+                {
+                  "productId": "694e036affd0cef659e53f8a",
+                  "quantity": 2,
+                  "price": 1200.00
+                }
+              ],
+              "shippingAddress": {
+                "streetAddress": "742 Evergreen Terrace",
+                "city": "Mumbai",
+                "state": "Maharashtra",
+                "pinCode": "400001"
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8000/orders/update
+        name: Update Order
+        meta:
+          id: req_7dc6e4aaef244fd699c7ab94eae461d5
+          created: 1766832905481
+          modified: 1766833135070
+          isPrivate: false
+          description: ""
+          sortKey: -1766832905481
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "orderId": "ORD-2025-001",
+              "values": {
+                "status": "SHIPPED",
+                "shippingAddress": {
+                  "streetAddress": "Flat 402, Green Apartments",
+                  "city": "Bengaluru",
+                  "state": "Karnataka",
+                  "pinCode": "560001"
+                }
+              }
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Customers
+    meta:
+      id: fld_a9ec12036091473f99da5fa1ad8d6877
+      created: 1766733502398
+      modified: 1766733502398
+      sortKey: -1766733502398
+      description: ""
+    children:
+      - url: localhost:8000/users/customer/create
+        name: create new customer
+        meta:
+          id: req_1463b50f1d524006b78d8fad4dc194a2
+          created: 1766733507634
+          modified: 1766807705096
+          isPrivate: false
+          description: ""
+          sortKey: -1766733507634
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+                "fullName": "Sarah Jenkins",
+                "email": "s.jenkins@globex.com",
+                "phoneNumber": "+1-555-0199",
+                "designation": "Operations Lead",
+                "companyInfo": {
+                  "companyName": "Globex International",
+                  "gstNumber": "07AABCG1234F1Z1",
+                  "panNumber": "AABCG1234F",
+                  "billingAddress": {
+                    "streetAddress": "Level 5, Sky Tower",
+                    "city": "New Delhi",
+                    "state": "Delhi",
+                    "pinCode": "110001",
+                    "isDefault": true
+                  },
+                  "shippingAddress": [
+                    {
+                      "streetAddress": "Plot 45, Okhla Phase III",
+                      "city": "New Delhi",
+                      "state": "Delhi",
+                      "pinCode": "110020",
+                      "isDefault": true
+                    },
+                    {
+                      "streetAddress": "Secondary Hub, Sector 62",
+                      "city": "Noida",
+                      "state": "UP",
+                      "pinCode": "201301",
+                      "isDefault": false
+                    }
+                  ],
+                  "contactDetails": {
+                    "phoneNumber": "011-44556677",
+                    "email": "contact@globex.com",
+                    "website": "www.globex.com"
+                  }
+                },
+                "bankDetails": {
+                  "accountHolderName": "Globex International",
+                  "accountNumber": "100200300400",
+                  "ifscCode": "ICIC0000456",
+                  "bankName": "ICICI Bank",
+                  "upiId": "globex@icici"
+                },
+                "blocked": false,
+                "creditLimit": 1200000
+              }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8000/users/customer/list
+        name: list customers
+        meta:
+          id: req_5e605698bbe940c5bd7df211e38a1deb
+          created: 1766740860484
+          modified: 1766741201400
+          isPrivate: false
+          description: ""
+          sortKey: -1766740860484
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8000/users/customer/delete/694e544a5d0085014b15858e
+        name: delete customer
+        meta:
+          id: req_9ea7c6989b2e492c9a1711d8d13d366a
+          created: 1766805205203
+          modified: 1766805281860
+          isPrivate: false
+          description: ""
+          sortKey: -1766805205203
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8000/users/customer/edit
+        name: Edit customer
+        meta:
+          id: req_86696b770f5143e08077b495f4ac37e9
+          created: 1766805695542
+          modified: 1766806432168
+          isPrivate: false
+          description: ""
+          sortKey: -1766805695542
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"customerId": "694e36f65f2bafcca82d2a34",
+            	"values": {
+            		"email": "harshavardhan.workspace@gmail.com",
+            		"companyInfo.companyName" : "Eistack"
+            	}
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Inventory
+    meta:
+      id: fld_22682a0051ce47a788b29e685f1b8454
+      created: 1766811763226
+      modified: 1766811763226
+      sortKey: -1766811763226
+      description: ""
+    children:
+      - url: localhost:8000/inventory/create
+        name: create Inventory
+        meta:
+          id: req_881993c0123947e8bef812ab29f438cf
+          created: 1766811765947
+          modified: 1766812658010
+          isPrivate: false
+          description: ""
+          sortKey: -1766811765947
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"product": "694e036affd0cef659e53f8a",
+            	"stock": 30,
+            	"reserved": 0,
+            	"reorderLevel": 10
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8000/inventory/list
+        name: List Inventory
+        meta:
+          id: req_6aa9fac861ad46a6b667c1e8b9354fa8
+          created: 1766811887248
+          modified: 1766811907305
+          isPrivate: false
+          description: ""
+          sortKey: -1766811887248
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Server connections
+    meta:
+      id: fld_1d2cdfec150a4bd2b622889901ab5291
+      created: 1766813686631
+      modified: 1766813686631
+      sortKey: -1766813686631
+      description: ""
+    children:
+      - url: http://3.107.228.66:8000/products/list
+        name: Create New Product
+        meta:
+          id: req_47f311450208462aa7ce0998d45de9fc
+          created: 1766813692657
+          modified: 1766814551052
+          isPrivate: false
+          description: ""
+          sortKey: -1766813692657
+        method: GET
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "name": "Industrial Drill Pro",
+              "description": "Heavy-duty cordless drill for professional use.",
+              "sku": "DRL-2025-X1",
+              "unit": "pcs",
+              "categories": ["Tools", "Power Tools", "Construction"],
+              "minPrice": 150.00,
+              "maxPrice": 199.99,
+              "taxRate": 12,
+              "inventoryLocation": "Warehouse A-12",
+              "stockQuantity": 50,
+              "minStockLevel": 5,
+              "minOrderLevel": 10,
+              "templateId": "694e10efe05c043460010093", 
+              "templateValues": {
+                "Voltage": "20V",
+                "Battery Type": "Lithium-Ion",
+                "Warranty Period": "2 Years"
+              },
+              "additionalFields": [
+                {
+                  "fieldName": "Promo Code",
+                  "fieldType": "text",
+                  "value": "WINTER25"
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://3.107.228.66:8000/products/templates/create
+        name: Create Template
+        meta:
+          id: req_845f64072db940a98c0c5cb5b42f76b0
+          created: 1766814741417
+          modified: 1766814789215
+          isPrivate: false
+          description: ""
+          sortKey: -1766814741417
+        method: POST
+        body:
+          mimeType: application/json
+          text: >-
+            {
+              "name": "Power Tools Template",
+              "description": "Standard fields for all electrical and battery-powered tools",
+              "templateFields": [
+                {
+                  "fieldName": "Voltage",
+                  "fieldType": "text",
+                  "isRequired": true
+                },
+                {
+                  "fieldName": "Battery Type",
+                  "fieldType": "selection",
+                  "isRequired": true
+                },
+                {
+                  "fieldName": "Warranty Period",
+                  "fieldType": "text",
+                  "isRequired": false
+                }
+              ]
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: http://3.107.228.66:8000/products/list
+        name: Products list
+        meta:
+          id: req_b47bb03f47a9494cb10a0e43da2fb4e5
+          created: 1766816047275
+          modified: 1766817891242
+          isPrivate: false
+          description: ""
+          sortKey: -1766816047275
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: ""
+        name: Order list
+        meta:
+          id: req_922db33e76b84ff5a30b667fe2a3c9bb
+          created: 1766833307034
+          modified: 1766833317828
+          isPrivate: false
+          description: ""
+          sortKey: -1766833307034
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Quotations
+    meta:
+      id: fld_aaaa6a7752b346399643925dbbdc4466
+      created: 1766824975655
+      modified: 1766824975655
+      sortKey: -1766824975655
+      description: ""
+    children:
+      - url: localhost:8000/orders/quotation/create
+        name: Create Quotation
+        meta:
+          id: req_41d696b6dd5a4bad96463113ea6ee3ae
+          created: 1766824980723
+          modified: 1766825128402
+          isPrivate: false
+          description: ""
+          sortKey: -1766824980723
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "customerId": "694e36f65f2bafcca82d2a34",
+              "products": [
+                {
+                  "productId": "6947f200149781e9a3278085",
+                  "quantity": 100,
+                  "targetPrice": 450.00,
+                  "quotedPrice": 480.00
+                },
+                {
+                  "productId": "694e1106e05c04346001009d",
+                  "quantity": 50,
+                  "targetPrice": 1100.00,
+                  "quotedPrice": 1150.00
+                }
+              ],
+              "status": "PENDING"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8000/orders/quotation/update
+        name: Update Quotation
+        meta:
+          id: req_8c67a87f1602481c9dba3bb0022c0900
+          created: 1766825686499
+          modified: 1766826425868
+          isPrivate: false
+          description: ""
+          sortKey: -1766825686499
+        method: PATCH
+        body:
+          mimeType: application/json
+          text: |-
+            {
+              "quotationId": "694f9ca9d51675d527e8aec1",
+              "values": {
+            		"status": "PENDING"
+            	}
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: localhost:8000/orders/quotation/list
+        name: List Quotations
+        meta:
+          id: req_23438621efa74d78b1794df02d1398c8
+          created: 1766826042055
+          modified: 1766826064005
+          isPrivate: false
+          description: ""
+          sortKey: -1766826042055
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/12.2.0
+            description: ""
+            disabled: false
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_1de0e8725cba3aff37ea856323b20ce521347b63
+    created: 1766197302075
+    modified: 1766833323733
+  cookies:
+    - id: fdf35684-4545-467c-9a0d-9986f6ef53d4
+      key: connect.sid
+      value: s%3A9W5qgmTmm3Lh3q5rfxUC53-r3aMQWa7J.Za%2FiudU1jvUe4%2B5qyEvvpLlDGUKHvhZ2Q0tf%2B2iJbis
+      domain: localhost
+      path: /
+      secure: false
+      httpOnly: true
+      hostOnly: true
+    - id: c253ec63-5859-444b-b4e5-9ae2e0f5cdd7
+      key: connect.sid
+      value: s%3ASJRU4_YVIQDqMwuEonyEXBSn7XVaV9jB.P6UNmwYsKmHdetAHUiZjrmtgbSrfX4BaGZKV6fLz3Dk
+      domain: 3.107.228.66
+      path: /
+      secure: false
+      httpOnly: true
+      hostOnly: true
+environments:
+  name: Base Environment
+  meta:
+    id: env_1de0e8725cba3aff37ea856323b20ce521347b63
+    created: 1766197302074
+    modified: 1766303030625
+    isPrivate: false
+  data:
+    base_url: mongodb+srv://adithyamn_db_user:mG5bagOZVei3skGF@farmience-crm.1bula4s.mongodb.net/?appName=farmience-crm
