@@ -1,27 +1,27 @@
 const {Inventory} = require("../model/inventory.js");
-const {Products} = require("../../products/model/index.js");
+const { Products } = require("../../products/model/index.js");
 
 
 exports.createInventory = async ( req, res ) => {
     try {
         const {
-            productId,
+            product,
             stock,
             reorderLevel = 0
         } = req.body;
 
-        const productExists = await Products.findById(productId);
+        const productExists = await Products.find({product});
         if ( !productExists) {
             return res.status(404).json({message: "product not found in database"});
         }
 
-        const inventoryExists = await Inventory.findOne({ product: productId});
+        const inventoryExists = await Inventory.findOne({ product});
         if (inventoryExists) {
             return res.status(409).json({message: "inventory already exists"});
         }
 
         const inventory = await Inventory.create({
-            product: productId,
+            product,
             stock,
             reorderLevel,
         });

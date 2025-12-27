@@ -53,5 +53,7 @@ const companyDetailsSchema = new mongoose.Schema({
 
 const companyDetails = mongoose.model("CompanyDetails", companyDetailsSchema);
 module.exports = {
-    companyDetails
+    companyDetails,
+    addressSchema,
+    companyDetailsSchema
 }

@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-
+const { addressSchema } = require('../../customer/model/index.js');
 const orderItemSchema = new mongoose.Schema({
     productId : {
         type: mongoose.Schema.Types.ObjectId,
@@ -21,6 +21,11 @@ const orderItemSchema = new mongoose.Schema({
 });
 
 const orderSchema = new mongoose.Schema({
+    customerId: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'CustomerDetails',
+    },
+
     orderId: {
         type: String,
         required: true,
@@ -49,6 +54,9 @@ const orderSchema = new mongoose.Schema({
         type: String,
         enum: ["PENDING", "PAID", "SHIPPED", "DELIVERED", "CANCELLED"],
         default: "PENDING",
+    },
+    shippingAddress: {
+        type: addressSchema
     }
 }, {
     timestamps: true

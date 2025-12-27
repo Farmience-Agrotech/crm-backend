@@ -1,14 +1,23 @@
 const {Orders} = require("../model/orders.js");
+const { customerDetails } = require("../../customer/model/customer-schema.js")
 const { Inventory } = require("../../inventory/model/inventory.js");
+const { nanoid } = require("nanoid");
+
 
 exports.createOrder = async (req, res) => {
     try {
-        const { orderId, products, totalAmount, status } = req.body;
+        const { customerId, products, address } = req.body;
 
-        const existingOrder = await Orders.findOne({ orderId });
-        if (existingOrder) {
-            return res.status(409).json({ error: "Order with same ID already exists." });
+
+        const generatedOrderId = `ORD-${nanoid(8).toUpperCase()}`;
+
+        const customer = await customerDetails.findById(customerId);
+        if ( !customer ) {
+            return res.status(400).json("Customer not found");
         }
+
+
+
 
         for (const item of products) {
             const inventory = await Inventory.findOne({ product: item.productId });
@@ -30,17 +39,19 @@ exports.createOrder = async (req, res) => {
         const reservationPromises = products.map(item =>
             Inventory.findOneAndUpdate(
                 { product: item.productId },
-                { $inc: { reserved: item.quantity } },
-                { new: true }
+                { $inc: { reserved: item.quantity } }
             )
         );
         await Promise.all(reservationPromises);
+        const totalAmount = products.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
         const newOrder = await Orders.create({
-            orderId,
+            orderId : generatedOrderId,
+            customerId : customerId,
             products,
             totalAmount,
-            status: status || 'PENDING'
+            address,
+            status: "PENDING"
         });
 
         res.status(201).json(newOrder);
@@ -58,6 +69,27 @@ exports.listOrders = async ( req, res) => {
         }
 
         res.status(200).json(orders);
+    } catch ( error ) {
+        res.status(500).json({error: error.message});
+    }
+}
+
+
+exports.updateOrder = async ( req, res ) => {
+    try {
+
+        const {
+            orderId,
+            values
+        } = req.body;
+
+        const order = await Orders.findOne({ orderId});
+
+        if ( !order ) {
+            return res.status(404).json({error: `No order with id ${ orderId }.`});
+        }
+
+
     } catch ( error ) {
         res.status(500).json({error: error.message});
     }

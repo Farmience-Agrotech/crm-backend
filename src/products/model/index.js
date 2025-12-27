@@ -1,6 +1,6 @@
-const { productSchema } = require('./product-schema.js');
+const { Products } = require('./product-schema.js');
 
 
 module.exports = {
-    productSchema
+    Products
 }
