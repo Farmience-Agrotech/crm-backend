@@ -28,12 +28,12 @@ exports.createOrder = async (req, res) => {
                 });
             }
 
-            const availableStock = inventory.stock - inventory.reserved;
-            if ( availableStock <= item.quantity ) {
-                return res.status(400).json({
-                    error: `Insufficient stock for product ${ item.productId }.`
-                })
-            }
+            // const availableStock = inventory.stock - inventory.reserved;
+            // if ( availableStock <= item.quantity ) {
+            //     return res.status(400).json({
+            //         error: `Insufficient stock for product ${ item.productId }.`
+            //     })
+            // }
         }
 
         const reservationPromises = products.map(item =>
