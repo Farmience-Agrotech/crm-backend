@@ -36,13 +36,13 @@ exports.createOrder = async (req, res) => {
             // }
         }
 
-        const reservationPromises = products.map(item =>
-            Inventory.findOneAndUpdate(
-                { product: item.productId },
-                { $inc: { reserved: item.quantity } }
-            )
-        );
-        await Promise.all(reservationPromises);
+        // const reservationPromises = products.map(item =>
+        //     Inventory.findOneAndUpdate(
+        //         { product: item.productId },
+        //         { $inc: { reserved: item.quantity } }
+        //     )
+        // );
+        // await Promise.all(reservationPromises);
         const totalAmount = products.reduce((acc, item) => acc + (item.price * item.quantity), 0);
 
         const newOrder = await Orders.create({
