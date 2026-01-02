@@ -65,6 +65,10 @@ const orderSchema = new mongoose.Schema({
     },
     discount: {
         type: Number
+    },
+    priority: {
+        type: String,
+        enum: ["HIGH", "MID", "LOW"]
     }
 }, {
     timestamps: true
