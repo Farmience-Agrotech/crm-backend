@@ -14,10 +14,10 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
 // DEV ENV
-// const db = "mongodb://localhost:27017"
+const db = "mongodb://localhost:27017"
 
 // PRODUCTION ENV
-const db = "mongodb+srv://adithyamn_db_user:mG5bagOZVei3skGF@farmience-crm.1bula4s.mongodb.net/?appName=farmience-crm"
+// const db = "mongodb+srv://adithyamn_db_user:mG5bagOZVei3skGF@farmience-crm.1bula4s.mongodb.net/?appName=farmience-crm"
 
 
     mongoose
@@ -51,6 +51,9 @@ app.use(passport.session());
 // Routes
 // app.use('/', require('./api/api.js'));
 app.use("/products", require("./products/route/index.js"));
+app.use("/products", require("./categories/route/index.js"));
+
+
 app.use("/inventory", require("./inventory/route/inventoryRoute.js"));
 
 
