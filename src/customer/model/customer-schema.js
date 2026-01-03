@@ -2,6 +2,18 @@ const mongoose = require("mongoose");
 const { companyDetails } = require('./company-details-schema.js');
 const { bankDetails } = require('./bank-details-schema.js');
 const customerSchema = new mongoose.Schema({
+    ownerCompany: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Company",
+      required: true,
+      index: true,
+    },
+    type: {
+      type: String,
+      enum: ["BUYER", "SUPPLIER", "BOTH"],
+      required: true,
+      default: "BUYER",
+    },
     fullName: {
         type: String,
         required: true,
@@ -32,6 +44,8 @@ const customerSchema = new mongoose.Schema({
     creditLimit : {
         type: Number,
     }
+}, {
+    timestamps: true
 });
 
 const customerDetails = mongoose.model('CustomerDetails', customerSchema);

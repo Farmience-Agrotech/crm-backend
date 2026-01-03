@@ -9,10 +9,21 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    role: {
+    type : {
         type: String,
-        enum: ["ADMIN", "USER", "EDITOR"],
-        default: "USER"
+        enum: ["SUPER_ADMIN", "COMPANY_USER"],
+        default: "COMPANY_USER"
+    },
+    role: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Role",
+        required : function () { return this.type === 'COMPANY_USER'}
+    },
+
+    company: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Company",
+        required: function () { return this.role !== 'SUPER_ADMIN'; },
     }
 }, {
     timestamps: true,

@@ -9,8 +9,15 @@ exports.createCustomer = async (req, res) => {
             designation,
             companyInfo,
             bankDetails,
-            creditLimit
+            creditLimit,
+            type
         } = req.body;
+
+        const userCompany = req.user.company;
+
+        if ( !userCompany ) {
+            return res.status(400).json({ error: 'User Not in company.' });
+        }
 
         if ( !fullName || !email || !phoneNumber || !designation || !companyInfo ) {
             return res.status(400).send({
@@ -19,6 +26,8 @@ exports.createCustomer = async (req, res) => {
         }
 
         const newCustomer = await customerDetails.create({
+            ownerCompany: userCompany,
+            type: type || "BUYER",
             fullName,
             email,
             phoneNumber,
