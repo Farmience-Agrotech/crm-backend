@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const {Companies} = require('../src/company/model/company-schema.js');
 const { Users } = require('../src/users/model/user.js');
-const { Roles } = require('../src/users/model/role-schema.js'); // Make sure path matches your file structure
+const { Roles } = require('../src/users/model/role-schema.js');
 
 mongoose.connect('mongodb://localhost:27017').then(() => console.log("DB Connected"));
 
@@ -31,9 +31,7 @@ const seed = async () => {
 
         // 3. Create the Admin User
         console.log("Creating Admin User...");
-        // Note: The User model hashes the password in pre-save hook,
-        // but if creating via generic Mongoose create, ensure hook runs or hash manually.
-        // Assuming pre-save hook is active:
+
         await Users.create({
             userName: "techcorp_admin",
             password: "admin123",
@@ -42,7 +40,7 @@ const seed = async () => {
             company: company._id
         });
 
-        console.log("✅ Seed Successful! You can now login with 'techcorp_admin' / 'admin123'");
+        console.log("Seed Successful! You can now login with 'techcorp_admin' / 'admin123'");
         process.exit();
     } catch (e) {
         console.error(e);
