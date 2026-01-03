@@ -5,8 +5,8 @@ const { protect, authorize } = require('../../users/middleware/authMiddleware.js
 const { createCompany, updateCompany, deleteCompany, getCompanyProfile } = require('../controllers/index.js');
 
 router.post('company/create',
-    protect,
-    authorize('company.create'),
+    // protect,
+    // authorize('company.create'),
     createCompany
 );
 
