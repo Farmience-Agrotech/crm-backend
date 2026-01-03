@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { companyDetails, bankDetails } = require("../../customer/model/index.js");
 
 const companySchema = new mongoose.Schema({
     name: {
@@ -18,6 +19,15 @@ const companySchema = new mongoose.Schema({
     },
     contactEmail: {
         type: String,
+    },
+    companyInfo: {
+        type: companyDetails.schema,
+        default: {}
+    },
+
+    bankDetails: {
+        type: bankDetails.schema, // Accessing the schema object from the model export
+        default: {}
     },
     maxUsers: {
         type: Number,

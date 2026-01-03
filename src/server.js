@@ -64,6 +64,7 @@ app.use("/orders", require("./quotation/route/index.js"));
 // Users
 app.use("/users", require("./users/route/userRoute.js"));
 app.use("/users", require("./customer/route/index.js"));
+app.use("/users", require("./company/routes/index.js"));
 
 app.use("/products", require("./templates/route/templateRoute.js"));
 
