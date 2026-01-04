@@ -8,9 +8,13 @@
 | category.delete 	| /products/category/delete 	|
 
 ## Company
-| Permission      	| Route                     	|
-|-----------------	|---------------------------	|
-| company.create  	| /users/company/create     	|
-| company.profile 	| /users/company/update/:id 	|
-| company.update  	| /users/company/delete/:id 	|
-| company.delete  	| /users/company/profile    	|
+| Permission      	| Route                     	| HTTPS Method 	|
+|-----------------	|---------------------------	|--------------	|
+| company.create  	| /users/company/create     	| POST         	|
+| company.profile 	| /users/company/update/:id 	| GET          	|
+| company.update  	| /users/company/delete/:id 	| PATCH        	|
+| company.delete  	| /users/company/profile    	| DELETE       	|
+
+## Customer
+
+
