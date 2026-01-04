@@ -23,16 +23,24 @@
 | customer.update  	| /users/customer/delete/:customerId 	| DELETE       	|
 | customer.delete  	| /users/customer/edit               	| PATCH        	|
 
-# Inventory
+## Inventory
 | Permission       	| Route             	| HTTPS Method 	|
 |------------------	|-------------------	|--------------	|
 | inventory.create 	| /inventory/create 	| POST         	|
 | inventory.update 	| /inventory/update 	| POST         	|
 | inventory.list   	| /inventory/list   	| GET          	|
 
-# Orders
+## Orders
 | Permission   	| Route             	| HTTPS Method 	|
 |--------------	|-------------------	|--------------	|
 | order.create 	| /orders/create    	| POST         	|
 | order.list   	| /inventory/update 	| GET          	|
 | order.update 	| /orders/update    	| PATCH        	|
+
+## Products
+| Permission     	| Route                       	| HTTPS Method 	|
+|----------------	|-----------------------------	|--------------	|
+| product.create 	| /products/create            	| POST         	|
+| product.list   	| /products/list              	| GET          	|
+| product.update 	| /products/update            	| PATCH        	|
+| product.delete 	| /products/delete/:productId 	| DELETE       	|
