@@ -16,5 +16,11 @@
 | company.delete  	| /users/company/profile    	| DELETE       	|
 
 ## Customer
+| Permission       	| Route                              	| HTTPS Method 	|
+|------------------	|------------------------------------	|--------------	|
+| customer.create  	| /users/customer/create             	| POST         	|
+| customer.profile 	| /users/customer/list               	| GET          	|
+| customer.update  	| /users/customer/delete/:customerId 	| DELETE       	|
+| customer.delete  	| /users/customer/edit               	| PATCH        	|
 
 
