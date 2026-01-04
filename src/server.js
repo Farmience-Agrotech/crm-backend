@@ -10,7 +10,6 @@ const cors = require('cors');
 const { inventoryRouter } = require("./inventory/route/inventoryRoute.js");
 const app = express();
 
-//Set Up the Assets Folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 // DEV ENV
@@ -48,25 +47,65 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Routes
-// app.use('/', require('./api/api.js'));
-app.use("/products", require("./products/route/index.js"));
-app.use("/products", require("./categories/route/index.js"));
+// PRODUCT ROUTE
+app.use(
+    "/products",
+    require("./products/route/index.js")
+);
 
+// PRODUCT
+// | -- CATEGORY
+app.use(
+    "/products",
+    require("./categories/route/index.js")
+);
 
-app.use("/inventory", require("./inventory/route/inventoryRoute.js"));
+// PRODUCT
+// | -- TEMPLATES
+app.use(
+    "/products",
+    require("./templates/route/templateRoute.js")
+);
+
+// INVENTORY
+app.use(
+    "/inventory",
+    require("./inventory/route/inventoryRoute.js")
+);
 
 
 // ORDERS
-app.use("/orders", require("./orders/route/orderRoute.js"));
-app.use("/orders", require("./quotation/route/index.js"));
+app.use(
+    "/orders",
+    require("./orders/route/orderRoute.js")
+);
 
-// Users
-app.use("/users", require("./users/route/userRoute.js"));
-app.use("/users", require("./customer/route/index.js"));
-app.use("/users", require("./company/routes/index.js"));
+// ORDERS
+// | -- QUOTATION
+app.use(
+    "/orders",
+    require("./quotation/route/index.js")
+);
 
-app.use("/products", require("./templates/route/templateRoute.js"));
+// USERS
+app.use(
+    "/users",
+    require("./users/route/userRoute.js")
+);
+
+// USERS
+// | -- CUSTOMER
+app.use(
+    "/users",
+    require("./customer/route/index.js")
+);
+
+// USERS
+// | -- COMPANY
+app.use(
+    "/users",
+    require("./company/routes/index.js")
+);
 
 
 const PORT = process.env.PORT || 8000;
