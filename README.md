@@ -44,3 +44,10 @@
 | product.list   	| /products/list              	| GET          	|
 | product.update 	| /products/update            	| PATCH        	|
 | product.delete 	| /products/delete/:productId 	| DELETE       	|
+
+## Quotation
+| Permission       	| Route                    	| HTTPS Method 	|
+|------------------	|--------------------------	|--------------	|
+| quotation.create 	| /orders/quotation/create 	| POST         	|
+| quotation.update 	| /orders/quotation/upate  	| PATCH        	|
+| quotation.list   	| /orders/quotation/list   	| GET          	|
