@@ -58,3 +58,13 @@
 | template.create 	| /products/templates/create             	| POST         	|
 | template.list   	| /products/templates/list               	| GET          	|
 | template.delete 	| /products/templates/delete/:templateId 	| DELETE       	|
+
+## User
+| Permission  	| Route                  	| HTTPS Method 	|
+|-------------	|------------------------	|--------------	|
+| user.create 	| /users/register        	| POST         	|
+| user.view   	| /users/register        	| POST         	|
+| role.create 	| /users/list            	| GET          	|
+| role.create 	| /users/role/create     	| POST         	|
+| role.edit   	| /users/role/update/:id 	| PATCH        	|
+| role.delete 	| /users/role/delete/:id 	| DELETE       	|
