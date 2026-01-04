@@ -30,4 +30,9 @@
 | inventory.update 	| /inventory/update 	| POST         	|
 | inventory.list   	| /inventory/list   	| GET          	|
 
-
+# Orders
+| Permission   	| Route             	| HTTPS Method 	|
+|--------------	|-------------------	|--------------	|
+| order.create 	| /orders/create    	| POST         	|
+| order.list   	| /inventory/update 	| GET          	|
+| order.update 	| /orders/update    	| PATCH        	|
