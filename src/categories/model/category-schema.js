@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 const categorySchema = new mongoose.Schema({
     company : {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'Company ',
+      ref: 'Company',
       required: true,
       index: true,
     },

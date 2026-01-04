@@ -8,26 +8,23 @@ exports.editCustomer = async ( req, res ) => {
             values
         } = req.body;
 
-        const customer = await customerDetails.findOne({ _id: customerId});
+        const userCompany = req.user.company;
+        if (values.ownerCompany) delete values.ownerCompany;
+        if (values._id) delete values._id;
 
-        if ( !customer ) {
-            return res.status(400).json({
-                message: `Customer with id ${customerId} not found`
-            });
-        }
-
-        const updatedCustomer = await customerDetails.findByIdAndUpdate(
-            customerId,
+        const updatedCustomer = await customerDetails.findOneAndUpdate(
+            { _id: customerId, ownerCompany: userCompany },
             { $set: values },
             { new: true, runValidators: true }
         );
 
-        res.status(200).json({
-            updatedCustomer
-        })
+        if (!updatedCustomer) {
+            return res.status(404).json({
+                message: `Customer with id ${customerId} not found or access denied.`
+            });
+        }
 
-
-
+        res.status(200).json({ updatedCustomer });
     } catch ( error ) {
         res.status(400).json({
             error: error

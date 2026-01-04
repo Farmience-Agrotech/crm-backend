@@ -12,7 +12,7 @@ exports.createCategory = async (req, res) => {
 
         const existingCategory = await Categories.findOne({
             name: name,
-            companyId: userCompany
+            company: userCompany
         });
         if (existingCategory) {
             return res.status(400).json({

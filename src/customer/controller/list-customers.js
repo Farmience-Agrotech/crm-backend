@@ -1,20 +1,17 @@
 const { customerDetails } = require("../model/index.js");
 
-exports.listCustomers = async ( req, res) => {
+exports.listCustomers = async (req, res) => {
     try {
-        const customers = await customerDetails.find({});
+        const userCompany = req.user.company;
 
-        if ( !customers) {
-            return res.status(400).send({
-                status: "No customers found",
-            });
-        }
+        const customers = await customerDetails.find({ ownerCompany: userCompany })
+            .sort({ createdAt: -1 });
 
         res.status(200).json(customers);
 
-    } catch ( error ) {
-        return res.status(200).json({
-            error: error,
-        })
+    } catch (error) {
+        res.status(500).json({
+            error: error.message,
+        });
     }
 }
