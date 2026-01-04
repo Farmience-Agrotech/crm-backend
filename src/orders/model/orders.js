@@ -20,6 +20,12 @@ const orderItemSchema = new mongoose.Schema({
 });
 
 const orderSchema = new mongoose.Schema({
+    company : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company',
+        required: true,
+        index: true,
+    },
     customerId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'CustomerDetails',
@@ -72,6 +78,13 @@ const orderSchema = new mongoose.Schema({
     }
 }, {
     timestamps: true
+})
+
+orderSchema.index({
+    company : 1,
+    orderId : 1
+}, {
+    unique: true
 })
 
 const Orders = mongoose.models.Order || mongoose.model("Order", orderSchema);
