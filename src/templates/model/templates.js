@@ -16,6 +16,12 @@ const customFieldsSchema = new mongoose.Schema({
 })
 
 const templateSchema = new mongoose.Schema({
+    company : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company',
+        required: true,
+        index: true
+    },
     name : {
         type: String,
         required: true,
@@ -31,7 +37,7 @@ const templateSchema = new mongoose.Schema({
     }
 })
 
-
+templateSchema.index({ company: 1, name: 1 }, { unique: true });
 const Templates = mongoose.model("Template", templateSchema);
 module.exports = {
     Templates

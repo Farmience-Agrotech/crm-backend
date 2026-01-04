@@ -3,7 +3,15 @@ const { Templates } = require('../model/templates.js');
 
 exports.getTemplate = async (req, res) => {
     try {
-        const templates = await Templates.find({});
+
+        const userCompany = req.user.company;
+
+        const templates = await Templates.find({
+            $or : [
+                { company: userCompany},
+            ]
+        }).sort({ createdAt: -1 });
+
         if ( !templates ) {
             return res.status(200).json({
                 message: "No templates found",
@@ -30,7 +38,19 @@ exports.createTemplate = async (req, res) => {
             templateFields
         } = req.body;
 
+        const userCompany = req.user.company;
+
+        const existing = await Templates.findOne({
+            name: name,
+            company: userCompany
+        });
+
+        if (existing) {
+            return res.status(409).json({ message: "A template with this name already exists." });
+        }
+
         const template = await Templates.create({
+            company: userCompany,
             name,
             description,
             templateFields
@@ -52,25 +72,29 @@ exports.createTemplate = async (req, res) => {
         })
     }
 }
+
 exports.deleteTemplate = async ( req, res ) => {
     try {
         const {
             templateId
         } = req.params;
+        const userCompany = req.user.company;
 
-        const template = await Templates.findOne({ _id : templateId});
+        const deletedTemplate = await Templates.findOneAndDelete({
+            _id: templateId,
+            company: userCompany,
+        });
 
-        if ( !template ) {
-            return res.status(200).json({
-                message: `No template with ${templateId} found`
-            })
+        if (!deletedTemplate) {
+            return res.status(404).json({
+                message: `Template not found or you do not have permission to delete it.`
+            });
         }
 
-        const deleteTemplate = await Templates.deleteOne({ _id : templateId});
-
         res.status(200).json({
-            message: `Template with ${templateId} deleted successfully`
-        })
+            message: `Template successfully deleted`,
+            id: templateId
+        });
     } catch (error) {
         return res.status(200).json({
             message: error.message,
