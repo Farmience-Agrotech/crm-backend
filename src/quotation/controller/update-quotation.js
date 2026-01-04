@@ -8,24 +8,28 @@ exports.updateQuotation = async (req, res) => {
             quotationId,
             values
         } = req.body;
+        const userCompany = req.user.company;
 
-        const existingQuotation = await quotation.find({quotationId});
+        delete values.company;
+        delete values.quotationNumber;
+        delete values._id;
 
-        if (!existingQuotation) {
-            return res.status(400).json({
-                error: "Could not find quotation"
-            });
-        }
 
-        const updatedQuotation = await quotation.findByIdAndUpdate(
-            quotationId,
+        const updatedQuotation = await quotation.findOneAndUpdate(
+            {_id: quotationId, company: userCompany},
             { $set: values},
             {new: true, runValidators: true}
-        )
+        );
+
+        if (!updatedQuotation) {
+            return res.status(404).json({
+                error: "Quotation not found or access denied."
+            });
+        }
 
         res.status(200).json(updatedQuotation);
 
     } catch ( error ) {
-        res.status(400).json({error: error});
+        res.status(500).json({error: error.message});
     }
 }
