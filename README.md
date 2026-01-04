@@ -23,4 +23,11 @@
 | customer.update  	| /users/customer/delete/:customerId 	| DELETE       	|
 | customer.delete  	| /users/customer/edit               	| PATCH        	|
 
+# Inventory
+| Permission       	| Route             	| HTTPS Method 	|
+|------------------	|-------------------	|--------------	|
+| inventory.create 	| /inventory/create 	| POST         	|
+| inventory.update 	| /inventory/update 	| POST         	|
+| inventory.list   	| /inventory/list   	| GET          	|
+
 

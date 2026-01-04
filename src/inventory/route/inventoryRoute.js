@@ -13,6 +13,7 @@ router.post('/update',
     protect,
     authorize("inventory.update"),
     updateStock);
+
 router.get('/list',
     protect,
     authorize("inventory.list"),
