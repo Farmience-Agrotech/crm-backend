@@ -4,6 +4,7 @@ const { listUsers } = require("./list-users.js");
 const { createRole } = require("./create-roles.js");
 const { updateRole } = require("./upate-role.js");
 const { deleteRole } = require("./delete-role.js");
+const { listRoles } = require("./list-roles.js");
 
 
 
@@ -13,5 +14,6 @@ module.exports = {
     listUsers,
     createRole,
     updateRole,
-    deleteRole
+    deleteRole,
+    listRoles,
 }
