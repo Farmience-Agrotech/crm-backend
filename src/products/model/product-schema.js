@@ -3,6 +3,14 @@ const { customFieldsSchema } = require('./custom-fields-schema.js');
 
 
 const productSchema = new mongoose.Schema({
+
+    company : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company',
+        required: true,
+        index: true
+    },
+
     name: {
         type: String,
         required: true,
@@ -82,6 +90,13 @@ const productSchema = new mongoose.Schema({
 }, {
     timestamps: true
     });
+
+productSchema.index({
+    company: 1,
+    sku:1
+}, {
+    unique: true
+});
 
 const Products = mongoose.models.Product || mongoose.model("Product", productSchema);
 module.exports  = {

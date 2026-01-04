@@ -8,7 +8,16 @@ exports.createProduct = async ( req, res) => {
             minStockLevel, minOrderLevel, additionalFields, templateId, templateValues, hsnCode
         } = req.body;
 
-        const productExists = await Products.findOne({name});
+        const userCompany = req.user.company;
+
+        const productExists = await Products.findOne({
+            company: userCompany,
+            $or: [
+                { name : name},
+                { sku: sku }
+            ]
+        });
+
         if (productExists) {
             return res.status(400).json({message: "Product already exists."});
         }
@@ -43,6 +52,7 @@ exports.createProduct = async ( req, res) => {
 
 
         const product = await Products.create({
+            company: userCompany,
             name, description, sku, unit, categories, minPrice, maxPrice, taxRate, inventoryLocation,
             stockQuantity, minStockLevel, minOrderLevel, additionalFields: finalAdditionalFields, templateId: templateId || null, hsnCode
         });
