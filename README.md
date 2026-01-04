@@ -51,3 +51,10 @@
 | quotation.create 	| /orders/quotation/create 	| POST         	|
 | quotation.update 	| /orders/quotation/upate  	| PATCH        	|
 | quotation.list   	| /orders/quotation/list   	| GET          	|
+
+## Templates
+| Permission      	| Route                                  	| HTTPS Method 	|
+|-----------------	|----------------------------------------	|--------------	|
+| template.create 	| /products/templates/create             	| POST         	|
+| template.list   	| /products/templates/list               	| GET          	|
+| template.delete 	| /products/templates/delete/:templateId 	| DELETE       	|
