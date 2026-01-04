@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { protect, authorize } = require('../../users/middleware/authMiddleware.js');
+const { protect, authorize } = require('../../utils/authMiddleware.js');
 
 const { createCompany, updateCompany, deleteCompany, getCompanyProfile } = require('../controllers/index.js');
 

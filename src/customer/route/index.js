@@ -1,6 +1,6 @@
 const { createCustomer, listCustomers, deleteCustomer, editCustomer } = require("../controller/index.js");
 const express = require("express");
-const { protect, authorize } = require("../../users/middleware/authMiddleware.js");
+const { protect, authorize } = require("../../utils/authMiddleware.js");
 const router = express.Router();
 
 router.post(
