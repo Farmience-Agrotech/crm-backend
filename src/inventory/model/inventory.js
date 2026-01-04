@@ -1,5 +1,13 @@
 const mongoose = require('mongoose');
 const inventorySchema = new mongoose.Schema({
+
+    company : {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Company',
+        required: true,
+        index: true,
+    },
+
     // product ID,
     product: {
         type: mongoose.Schema.Types.ObjectId,
@@ -37,10 +45,13 @@ const inventorySchema = new mongoose.Schema({
 );
 
 
-// a dynamic type to keep track of AVAILABLE product.
-
 inventorySchema.virtual('available').get(function () {
     return this.stock - this.reserved;
 })
-
+inventorySchema.index({
+    company: 1,
+    product: 1
+}, {
+    unique: true
+})
 exports.Inventory = mongoose.model('Inventory', inventorySchema);
